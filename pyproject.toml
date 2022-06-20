@@ -1,0 +1,52 @@
+[tool.poetry]
+name = "config-manager-consumer-example"
+version = "1.0.33"
+description = "Vaibhav Config Manager Consumer Example"
+authors = ["Vaibhav Rai"]
+packages = [
+    { include = "scripts" },
+]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+uvicorn = "^0.11.5"
+pydantic = {extras = ["email"], version = "^1.5.1"}
+requests = "^2.23.0"
+argparse = "^1.4.0"
+structlog = "^20.2.0"
+botocore = "^1.27.11"
+boto3 = "^1.24.11"
+fastapi = "^0.78.0"
+adobe-config-manager = "^1.0.35"
+
+
+[tool.poetry.dev-dependencies]
+autoflake = "^1.3.1"
+pytest = "^5.4.1"
+flake8 = "^3.7.9"
+black = "^19.10b0"
+isort = "^5.6.4"
+pylint = "^2.6.0"
+
+[tool.poetry.scripts]
+run = 'scripts.run:start'
+lint = 'scripts.run:lint'
+fix-lint = 'scripts.run:fix_lint'
+test = 'scripts.run:test'
+
+[tool.isort]
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+ensure_newline_before_comments = true
+line_length = 88
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
+
+[[tool.poetry.source]]
+name = "jfrog"
+url = "http://localhost:8081/artifactory/api/pypi/pypi-local/simple/"
+secondary = true
